@@ -1,0 +1,41 @@
+S = int(input("Enter the number of supply: "))
+D = int(input("Enter the number of demand: "))
+Supply = []
+Demand = []
+for i in range(S):
+    Supply.append(int(input("Enter Supply Values: ")))
+print(Supply)
+for i in range(D):
+    Demand.append(int(input("Enter Demand Values: ")))
+print(Demand)
+matrix = []
+rows = S
+cols = D
+for i in range(rows):
+    rows = []
+    for j in range(cols):
+        element = int(input(f"Enter element [{i+1}][{j+1}]: "))
+        rows.append(element)
+    matrix.append(rows)
+for rows in matrix:
+    print(matrix)
+alloc_matrix = [[0 for _ in range(D)] for _ in range(S)]
+for i in range(S):
+    for j in range(D):
+        if Supply[i] > Demand[j]:
+            alloc_matrix[i][j] = Demand[j]
+            Supply[i] = Supply[i] - Demand[j]
+            Demand[j] = 0
+        else:
+            alloc_matrix[i][j] = Supply[i]
+            Demand[j] = Demand[j] - Supply[i]
+            Supply[i] = 0
+            break
+for row in matrix:
+    print(alloc_matrix)
+result = 0
+for i in range(S):
+    for j in range(D):
+        result += matrix[i][j] * alloc_matrix[i][j]
+print("Minimum Cost: ", result)
+

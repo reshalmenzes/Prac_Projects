@@ -1,0 +1,66 @@
+degree = int(input("Enter the degree of the equation: "))
+coefficients = []
+
+for i in range(degree + 1):
+    coefficients.append(int(input(f"Enter coefficient for x^{degree - i}: ")))
+
+equation = ""
+
+for i in range(degree + 1):
+    coef = coefficients[i]
+    power = degree - i
+
+    if coef == 0:
+        continue
+
+    if coef > 0 and equation != "":
+        equation += " + "
+    elif coef < 0:
+        equation += " - "
+
+    coef = abs(coef)
+
+    if coef != 1 or power == 0:
+        equation += str(coef)
+
+    if power > 1:
+        equation += "x^" + str(power)
+    elif power == 1:
+        equation += "x"
+
+print("\nStandard Equation:", equation, "= 0")
+
+def f(x):
+    value = 0
+    for i in range(degree + 1):
+        value += coefficients[i] * (x ** (degree - i))
+    return value
+
+e = 0.0001
+x1 = 1
+x2 = 2
+iteration = 1
+
+if f(x1) * f(x2) > 0:
+    print("\nBisection method not applicable")
+else:
+    print("\nIter |   x1     x2     x0    f(x0)")
+    print("------------------------------------")
+
+    while True:
+        x0 = (x1 + x2) / 2
+        fx0 = f(x0)
+
+        print(f"{iteration:4} | {x1:6.3f} {x2:6.3f} {x0:6.3f} {fx0:7.3f}")
+
+        if abs(fx0) < e:
+            break
+
+        if f(x1) * fx0 < 0:
+            x2 = x0
+        else:
+            x1 = x0
+
+        iteration += 1
+
+    print("\nRoot is approximately:", round(x0, 3))

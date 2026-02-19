@@ -1,0 +1,43 @@
+n = int(input("Enter the number of elemnts to be put in a Matrix: "))
+A = []
+for i in range (n):
+    A.append(int(input(f"Enter the element {i + 1}: ")))
+print("Matrix A:")
+print(A)
+
+Matrix = []
+R = []
+
+for a in A:
+    row = []
+    for b in A:
+        if a + b <= 5 : #For Intransitve a = a + b
+            row.append(1)
+            R.append((a,b))
+        else:
+            row.append(0)
+    Matrix.append(row)
+
+print("Matrix Reresentation:")
+for row in Matrix:
+    print(row)
+
+print("Reation R:")
+print(set(R))
+
+def is_transitive(R):
+    for(a,b) in R:
+        for(x,c) in R:
+            if x == b:
+                if(a,c) not in R:
+                    print(f"Does not satisfy the condition as ({a},{b}) and ({b},{c}) esists but ({a},{c}) doesnt))")
+                    return False
+                return True
+            
+if is_transitive(R):
+    print("Transitive Realtion")
+else:
+    print("Intransitive Realation")
+
+
+

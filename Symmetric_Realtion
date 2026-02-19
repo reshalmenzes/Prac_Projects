@@ -1,0 +1,40 @@
+n = int(input("Enter the number of elemnts to be put in a Matrix: "))
+A = []
+for i in range (n):
+    A.append(int(input(f"Enter the element {i + 1}: ")))
+print("Matrix A:")
+print(A)
+
+Matrix = []
+R = []
+
+for a in A:
+    row = []
+    for b in A:
+        if a % b != 0 : 
+            row.append(1)
+            R.append((a,b))
+        else:
+            row.append(0)
+    Matrix.append(row)
+
+print("Matrix Reresentation:")
+for row in Matrix:
+    print(row)
+
+print("Reation R:")
+print(set(R))
+
+def is_symmetric(R):
+    for (a,b) in R:
+       if (b,a) not in R:
+           return False
+       return True
+            
+if is_symmetric(R):
+    print("Symmetric Realtion")
+else:
+    print("Assymetric Realation")
+
+
+

@@ -1,0 +1,38 @@
+n = int(input("Enter number of elements: "))
+A = []
+for i in range (n):
+    A.append(int(input(f"Enter {i + 1} element: ")))
+print("Matrix A:")
+print(A)
+
+Matrix = []
+R = []
+
+for a in A:
+    Row = []
+    for b in A:
+        if a == b:
+            Row.append(1)
+            R.append((a,b))
+        else:
+            Row.append(0)
+    Matrix.append(Row)
+
+print("Matrix Represntation:")
+for Row in Matrix:
+    print(Row)
+
+print("Realtion Set:")
+print(set(R))
+
+def is_Reflexive(A, R):
+    for a in A:
+        if (a, a) not in R:
+            return False
+    return True
+
+
+if is_Reflexive(A,R):
+    print("Reflexive")
+else:
+    print("Irreflexive")

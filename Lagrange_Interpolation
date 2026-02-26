@@ -1,17 +1,17 @@
 x = []
 y = []
 
-n = int(input("Enter the number of elements: "))
+n = int(input("Enter the Number of Elements: "))
 
 for i in range(n):
-    x.append(int(input(f"Enter the term for x{i+1}: ")))
-    y.append(int(input(f"Enter the term for y{i+1}: ")))
+    x.append(int(input(f"Enter the Element X{i}: ")))
+print("X Matrix:",x)
 
-print("X matrix:", x)
-print("Y matrix:", y)
+for i in range(n):
+    y.append(int(input(f"Enter the Element X{i}: ")))
+print("Y Matrix:",y)
 
-
-X = int(input("Enter the input for which Y is to be calculated: "))
+X = float(input("Enter the input for which Y is to be calculated: "))
 
 result = 0
 
@@ -20,8 +20,9 @@ for i in range(n):
     den = 1
     for j in range(n):
         if i != j:
-            num *= (X - x[j])
-            den *= (x[i] - x[j])
-    result += (num / den) * y[i]
+            num*= (X - x[j])
+            den*= (x[i] - x[j])
+    result+= (num / den) * y[i]
 
-print("Value of Y:", result)
+print("Value of Y:", round(result,2))
+
